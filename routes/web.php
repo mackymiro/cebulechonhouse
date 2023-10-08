@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\MenuController;
+use App\Livewire\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('livewire.homepage');
+    return view('homepage');
 });
 
 
@@ -27,3 +29,18 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get('/order-now/lechon-house', function () {
+    return view('order-now');
+});
+
+Route::get('/order-now/chinese-kitchen', function () {
+    return view('order-now-chinese-kitchen');
+});
+
+

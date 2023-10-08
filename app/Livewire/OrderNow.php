@@ -4,12 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class Homepage extends Component
+class OrderNow extends Component
 {
-
-
     public function render()
     {
-        return view('livewire.homepage');
+        return view('livewire.order-now');
     }
 }
