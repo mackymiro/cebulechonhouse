@@ -30,9 +30,16 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
 Route::get('/admin', function () {
     return view('admin');
+});
+
+Route::get('/admin/dashboard', function(){
+    return view('admin-dashboard');
+});
+
+Route::get('/admin/add-categories', function(){
+    return view('add-categories');
 });
 
 Route::get('/order-now/lechon-house', function () {

@@ -6,13 +6,11 @@
         </x-slot>
 
         <x-validation-errors class="mb-4" />
-
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+        @if(session()->has('message'))
+            <div class="font-medium text-sm text-red-800">
+                {{ session('message') }}
             </div>
         @endif
-
         <form wire:submit.prevent="loginForm">
             @csrf
             <div class="col-span-12">
