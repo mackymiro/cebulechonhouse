@@ -42,6 +42,11 @@ Route::get('/admin/add-categories', function(){
     return view('add-categories');
 });
 
+Route::get('/admin/add-meals', function(){
+    return view('add-meals');
+});
+
+
 Route::get('/order-now/lechon-house', function () {
     return view('order-now');
 });

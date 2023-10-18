@@ -20,12 +20,12 @@
             <!-- Navigation Links -->
             <ul class="text-white">
                 <li class="mb-4">
-                    <a href="#" class="flex items-center py-2 px-4">
+                    <a href="{{ url('admin/dashboard') }}" class="flex items-center py-2 px-4">
                         <span class="mr-2"><i class="fas fa-tachometer-alt"></i></span> Dashboard
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="#" class="flex items-center py-2 px-4">
+                    <a href="{{ url('admin/menu') }}" class="flex items-center py-2 px-4">
                         <span class="mr-2"><i class="fas fa-menu"></i></span>Menu
                     </a>
                 </li>
@@ -45,7 +45,20 @@
                     <button id="sidebarCollapse" class="text-gray-500 focus:outline-none">
                         <i class="fas fa-bars"></i>
                     </button>
+                    <?php
+                        $currenturl = url()->current();
+                        $curExp = explode("/", $currenturl);
+                    ?>
+                    @if($curExp[4] == "Dashboard")
                     <h1 class="ml-3 text-2xl font-semibold">Dashboard</h1>
+                    @elseif($curExp[4] == "add-categories")
+                    <h1 class="ml-3 text-2xl font-semibold">Add Categories</h1>
+                    @elseif($curExp[4] == "add-meals")
+                    <h1 class="ml-3 text-2xl font-semibold">Add Meals</h1>
+                    @else
+                    <h1 class="ml-3 text-2xl font-semibold">Dashboard</h1>
+
+                    @endif
                 </div>
                 <div class="flex items-center">
                     <span class="mr-2">Welcome, Admin</span>

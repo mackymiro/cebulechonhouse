@@ -1,7 +1,7 @@
 <div>
 <div class="flex">
     <!-- Left Column (Add Category Form) -->
-    <div class="w-1/2 bg-white p-4 rounded shadow mr-4">
+    <div class="w-1/2 bg-white p-4  mr-4 rounded-lg shadow-lg">
         <h2 class="text-xl font-semibold mb-4">Add Category</h2>
         @error('categoryName')
             <p class="text-red-500 text-lg mt-2">{{ $message }}</p>
@@ -9,7 +9,7 @@
         <form wire:submit.prevent="saveCategory">
             <div class="mb-4">
                 <label for="category_name" class="block text-gray-700 font-bold mb-2">Category Name</label>
-                <input type="text" wire:model="categoryName" id="category_name" class="w-full px-3 py-2 border rounded" autocomplete="off">
+                <input type="text" wire:model="categoryName" class="w-full px-3 py-2 border rounded" autocomplete="off">
             </div>
             
             <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded">Save</button>
@@ -18,7 +18,7 @@
     </div>
 
     <!-- Right Column (Display Categories) -->
-    <div class="w-1/2 bg-white p-4 rounded shadow">
+    <div class="w-1/2 bg-white p-4 rounded-lg shadow-lg">
         <h2 class="text-xl font-semibold mb-4">Categories</h2>
 
         @if($allCategories && count($allCategories) > 0)
