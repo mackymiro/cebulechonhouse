@@ -50,6 +50,7 @@ class AddMeals extends Component
         // Optionally, you can set a success message
         session()->flash('message', 'Meals added successfully!');
 
+
     }
 
     public function mount(){

@@ -16,7 +16,7 @@
 
   <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
 
-  @if(session()->has('message'))
+    @if(session()->has('message'))
     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative animate__animated animate__fadeIn" role="alert">
         <strong class="font-bold">Success!</strong>
         <span class="block sm:inline">{{ session('message') }}</span>
@@ -36,7 +36,7 @@
 
       <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
 
-        <button wire:click="confirmDeleteMeals('{{ $deleteId }}')" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+        <button wire:click="confirmDeleteAlaCarte('{{ $deleteId }}')" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
         Delete
         </button>
 
