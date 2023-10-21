@@ -20,7 +20,7 @@ class AdminMenuAlaCarte extends Component
     public $updateId;
     public $deleteId;
 
-    public function confirmDeleteAlaCarte($id){
+    public function confirmDeleteMeals($id){
         $itemMeals = Item::find($id);
         $itemMeals->delete();
  
