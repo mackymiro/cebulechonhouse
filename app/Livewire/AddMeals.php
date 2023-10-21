@@ -30,7 +30,7 @@ class AddMeals extends Component
        $this->validate();
        $uploadedPhoto = $this->uploadPhoto;
        $fileName = $uploadedPhoto->getClientOriginalName();
-       $uploadedPhoto->storeAs('images', $fileName); 
+       $uploadedPhoto->storeAs('public/images', $fileName); 
 
 
         Item::create([

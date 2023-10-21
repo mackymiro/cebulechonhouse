@@ -21,7 +21,7 @@
     <body class="bg-gray-100">
         <header class="bg-blue-500 p-4 flex justify-between items-center">
             <div class="text-white">
-                <a href="{{ url('/') }}"><h1 class="text-3xl font-bold">Cebu Lechon House</h1></a>
+                <a href="{{ url('/') }}" wire:navigate><h1 class="text-3xl font-bold">Cebu Lechon House</h1></a>
             </div>
             @if (Route::has('login'))
             <div class="flex items-center space-x-4 text-white">

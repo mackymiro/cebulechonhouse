@@ -46,6 +46,30 @@ Route::get('/admin/add-meals', function(){
     return view('add-meals');
 });
 
+Route::get('/admin/menu', function(){
+    return view('admin-menu');
+});
+
+Route::get('/admin/menu/meals', function(){
+    return view('admin-menu-meals');
+});
+
+Route::get('/admin/menu/ala-carte', function(){
+    return view('admin-menu-ala-carte');
+});
+
+Route::get('/admin/menu/group-meals', function(){
+    return view('admin-menu-group-meals');
+});
+
+Route::get('/admin/menu/desserts', function(){
+    return view('admin-menu-dessert');
+});
+
+Route::get('/admin/menu/beverages', function(){
+    return view('admin-menu-beverages');
+});
+
 
 Route::get('/order-now/lechon-house', function () {
     return view('order-now');

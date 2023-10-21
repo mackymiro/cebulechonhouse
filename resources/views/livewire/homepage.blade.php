@@ -9,13 +9,13 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-white p-6 rounded shadow text-center">
                 <h2 class="text-2xl font-bold mb-4">Cebu Lechon House</h2>
-                <a href="{{ url('order-now/lechon-house') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-4 rounded">
+                <a href="{{ url('order-now/lechon-house') }}" wire:navigate class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-4 rounded">
                 <i class="fas fa-shopping-cart mr-2"></i>Order Now</a>
             </div>
 
             <div class="bg-white p-6 rounded shadow text-center">
                 <h2 class="text-2xl font-bold mb-4">New Chinese Kitchen</h2>
-                <a href="{{ url('order-now/chinese-kitchen') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-4 rounded">
+                <a href="{{ url('order-now/chinese-kitchen') }}" wire:navigate class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-4 rounded">
                 <i class="fas fa-shopping-cart mr-2"></i>Order Now</a>
             </div>
         </div>

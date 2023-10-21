@@ -14,20 +14,50 @@
         <nav id="sidebar" class="w-64 bg-blue-900 py-6">
             <!-- Logo -->
             <div class="text-center mb-6">
-                <a href="{{ url('admin/dashboard') }}" class="text-white text-2xl font-semibold uppercase">Admin Dashboard</a>
+                <a href="{{ url('admin/dashboard') }}" wire:navigate class="text-white text-2xl font-semibold uppercase">Admin Dashboard</a>
             </div>
 
             <!-- Navigation Links -->
+           <!-- Navigation Links -->
             <ul class="text-white">
                 <li class="mb-4">
-                    <a href="{{ url('admin/dashboard') }}" class="flex items-center py-2 px-4">
+                    <a href="{{ url('admin/dashboard') }}" wire:navigate class="flex items-center py-2 px-4">
                         <span class="mr-2"><i class="fas fa-tachometer-alt"></i></span> Dashboard
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="{{ url('admin/menu') }}" class="flex items-center py-2 px-4">
-                        <span class="mr-2"><i class="fas fa-menu"></i></span>Menu
+                    <a href="{{ url('admin/menu') }}" wire:navigate class="flex items-center py-2 px-4">
+                        <span class="mr-2"><i class="fas fa-menu"></i></span> Menu
                     </a>
+                    <!-- Submenu -->
+                    <ul class="pl-4">
+                        <li class="mb-2">
+                            <a href="{{ url('admin/menu/meals') }}" wire:navigate class="flex items-center py-2 px-2">
+                                <span class="mr-2"><i class="fas fa-hamburger"></i></span> Meals
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url('admin/menu/ala-carte') }}" wire:navigate class="flex items-center py-2 px-2">
+                                <span class="mr-2"><i class="fas fa-hamburger"></i></span> Ala Carte
+                            </a>
+                        </li>
+                        <!-- Add more submenu items as needed -->
+                        <li class="mb-2">
+                            <a href="{{ url('admin/menu/group-meals') }}" wire:navigate class="flex items-center py-2 px-2">
+                                <span class="mr-2"><i class="fas fa-hamburger"></i></span> Group Meals
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url('admin/menu/desserts') }}" wire:navigate class="flex items-center py-2 px-2">
+                                <span class="mr-2"><i class="fas fa-hamburger"></i></span> Desserts
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url('admin/menu/beverages') }}" wire:navigate class="flex items-center py-2 px-2">
+                                <span class="mr-2"><i class="fas fa-hamburger"></i></span> Beverages
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="mb-4">
                     <a href="#" class="flex items-center py-2 px-4">
@@ -55,6 +85,9 @@
                     <h1 class="ml-3 text-2xl font-semibold">Add Categories</h1>
                     @elseif($curExp[4] == "add-meals")
                     <h1 class="ml-3 text-2xl font-semibold">Add Meals</h1>
+                    @elseif($curExp[4] == "menu")
+                    <h1 class="ml-3 text-2xl font-semibold">Menu</h1>
+                    
                     @else
                     <h1 class="ml-3 text-2xl font-semibold">Dashboard</h1>
 
