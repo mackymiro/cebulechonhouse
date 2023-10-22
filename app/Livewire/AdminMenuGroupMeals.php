@@ -24,7 +24,7 @@ class AdminMenuGroupMeals extends Component
         $itemMeals = Item::find($id);
         $itemMeals->delete();
  
-        session()->flash('message', 'Meals deleted successfully!');
+        session()->flash('message', 'Group Meals deleted successfully!');
          
         return $this->redirect('/admin/menu/group-meals', navigate: true);
     }
@@ -60,7 +60,7 @@ class AdminMenuGroupMeals extends Component
         
         }
        
-        session()->flash('message', 'Meals updated successfully!');
+        session()->flash('message', 'Group Meals updated successfully!');
     
         return $this->redirect('/admin/menu/group-meals', navigate: true);
 

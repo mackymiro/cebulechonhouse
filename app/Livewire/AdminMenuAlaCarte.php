@@ -24,7 +24,7 @@ class AdminMenuAlaCarte extends Component
         $itemMeals = Item::find($id);
         $itemMeals->delete();
  
-        session()->flash('message', 'Meals deleted successfully!');
+        session()->flash('message', 'Ala Carte deleted successfully!');
          
         return $this->redirect('/admin/menu/ala-carte', navigate: true);
     }
@@ -60,7 +60,7 @@ class AdminMenuAlaCarte extends Component
         
         }
        
-        session()->flash('message', 'Meals updated successfully!');
+        session()->flash('message', 'Ala Carte updated successfully!');
     
         return $this->redirect('/admin/menu/ala-carte', navigate: true);
 

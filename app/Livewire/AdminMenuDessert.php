@@ -24,7 +24,7 @@ class AdminMenuDessert extends Component
         $itemMeals = Item::find($id);
         $itemMeals->delete();
  
-        session()->flash('message', 'Meals deleted successfully!');
+        session()->flash('message', 'Desserts deleted successfully!');
          
         return $this->redirect('/admin/menu/desserts', navigate: true);
     }
@@ -59,7 +59,7 @@ class AdminMenuDessert extends Component
         
         }
        
-        session()->flash('message', 'Meals updated successfully!');
+        session()->flash('message', 'Desserts updated successfully!');
     
         return $this->redirect('/admin/menu/desserts', navigate: true);
 
