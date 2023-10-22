@@ -70,6 +70,13 @@ Route::get('/admin/menu/beverages', function(){
     return view('admin-menu-beverages');
 });
 
+Route::get('/admin/user-settings', function(){
+    return view('admin-user-settings');
+});
+
+Route::get('/admin/customers', function(){
+    return view('admin-customers');
+});
 
 Route::get('/order-now/lechon-house', function () {
     return view('order-now');

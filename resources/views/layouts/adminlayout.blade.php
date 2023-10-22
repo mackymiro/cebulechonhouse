@@ -60,8 +60,13 @@
                     </ul>
                 </li>
                 <li class="mb-4">
-                    <a href="#" class="flex items-center py-2 px-4">
-                        <span class="mr-2"><i class="fas fa-cogs"></i></span> Settings
+                    <a href="{{ url('admin/user-settings') }}" wire:navigate class="flex items-center py-2 px-4">
+                        <span class="mr-2"><i class="fas fa-cogs"></i></span> User Settings
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="{{ url('admin/customers') }}" wire:navigate class="flex items-center py-2 px-4">
+                        <span class="mr-2"><i class="fas fa-users"></i></span> Customers
                     </a>
                 </li>
             </ul>
@@ -87,7 +92,10 @@
                     <h1 class="ml-3 text-2xl font-semibold">Add Meals</h1>
                     @elseif($curExp[4] == "menu")
                     <h1 class="ml-3 text-2xl font-semibold">Menu</h1>
-                    
+                    @elseif($curExp[4] == "user-settings")
+                    <h1 class="ml-3 text-2xl font-semibold">User Settings</h1>
+                    @elseif($curExp[4] == "customers")
+                    <h1 class="ml-3 text-2xl font-semibold">Customers</h1>
                     @else
                     <h1 class="ml-3 text-2xl font-semibold">Dashboard</h1>
 
@@ -96,7 +104,7 @@
                 <div class="flex items-center">
                     <span class="mr-2">Welcome, Admin</span>
                     <button class="text-blue-500 focus:outline-none">
-                        <i class="fas fa-sign-out-alt"></i>
+                        <a href="{{ url('/admin/logout') }}"><i class="fas fa-sign-out-alt"></i></a>
                     </button>
                 </div>
             </header>
