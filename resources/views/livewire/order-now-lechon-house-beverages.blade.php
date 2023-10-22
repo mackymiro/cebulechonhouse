@@ -1,12 +1,11 @@
-
 <div>
     <div class="container mx-auto mt-8 flex">
         <div class="w-1/4 bg-white p-6 rounded shadow">
-            @include('livewire.customers-menu')
+         @include('livewire.customers-menu')
         </div>
-        <!-- Menu Items -->
+         <!-- Menu Items -->
         <div class="w-3/4 bg-white p-6 rounded shadow mr-4">
-            <h2 class="text-2xl font-bold mb-4">Cebu Lechon House Menu</h2>
+            <h2 class="text-2xl font-bold mb-4">Cebu Lechon House - Desserts</h2>
             <div class="grid grid-cols-2 gap-4">
                 @foreach($items as $item)
                 <div class="bg-gray-200 p-4 rounded">
@@ -29,8 +28,7 @@
                 
             </div>
         </div>
-
-        <!-- Order Summary -->
+         <!-- Order Summary -->
         <div class="w-1/4 bg-white p-6 rounded shadow">
             <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
 
@@ -52,5 +50,3 @@
         </div>
     </div>
 </div>
-
-

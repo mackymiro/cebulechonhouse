@@ -5,14 +5,14 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Item;
 
-class OrderNow extends Component
+class OrderNowLechonHouseAlaCarte extends Component
 {
     public $isOpen = 0;
     public $foodName;
     public $foodPrice;
     public $foodImage;
     public $number = 1;
-
+    
     public function closeModal(){
         $this->isOpen = false;
     }
@@ -32,8 +32,8 @@ class OrderNow extends Component
 
     public function render(){
         $items = Item::orderBy('id', 'desc')
-                ->where('category_id', 1)
-                ->get();
-        return view('livewire.order-now', ['items'=>$items]);
+                    ->where('category_id', 2)
+                    ->get();
+        return view('livewire.order-now-lechon-house-ala-carte', ['items'=>$items]);
     }
 }

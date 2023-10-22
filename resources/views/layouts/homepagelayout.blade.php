@@ -23,10 +23,13 @@
             <div class="text-white">
                 <a href="{{ url('/') }}" wire:navigate><h1 class="text-3xl font-bold">Cebu Lechon House</h1></a>
             </div>
+                
             @if (Route::has('login'))
             <div class="flex items-center space-x-4 text-white">
             @auth
-                <a href="{{ url('/dashboard') }}" class="text-white; :outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                <a href="{{ url('/dashboard') }}" class="float-left; text-white; :outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                <a href="{{ url('/my-orders') }}" class="float-left; text-white; :outline focus:outline-2 focus:rounded-sm focus:outline-red-500">My Orders</a>
+          
             @else
                 <a href="{{ route('login') }}" class="text-white;">Log in</a>
 

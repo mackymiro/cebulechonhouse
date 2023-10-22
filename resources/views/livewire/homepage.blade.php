@@ -3,6 +3,7 @@
         <h2 class="text-4xl font-bold mb-4">Welcome to Cebu Lechon House</h2>
         <p class="text-lg mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         <img src="banner-image.jpg" alt="Banner Image" class="mx-auto rounded-lg">
+       
     </section>
 
     <section class="container mx-auto mt-8 flex justify-center">

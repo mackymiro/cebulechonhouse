@@ -82,6 +82,24 @@ Route::get('/order-now/lechon-house', function () {
     return view('order-now');
 });
 
+Route::get('order-now/lechon-house/ala-carte', function () {
+    return view('order-now-lechon-house-ala-carte');
+});
+
+Route::get('order-now/lechon-house/group-meals', function () {
+    return view('order-now-lechon-house-group-meals');
+});
+
+
+Route::get('order-now/lechon-house/desserts', function () {
+    return view('order-now-lechon-house-dessert');
+});
+
+Route::get('order-now/lechon-house/beverages', function () {
+    return view('order-now-lechon-house-beverages');
+});
+
+
 Route::get('/order-now/chinese-kitchen', function () {
     return view('order-now-chinese-kitchen');
 });
