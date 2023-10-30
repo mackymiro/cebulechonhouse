@@ -10,36 +10,65 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
+        <style>
+        .menu-links {
+            display: flex;
+            margin-left:-800px;
+            align-items: left;
+        }
+
+        .menu-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
-        <x-banner />
-
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+    <body class="bg-gray-100">
+        <header class="bg-blue-500 p-4 flex justify-between items-center">
+            <div class="text-white">
+                <a href="{{ url('/') }}" wire:navigate><h1 class="text-3xl font-bold">Cebu Lechon House</h1></a>
+            </div>
+            @auth
+            <div class="menu-links">
+            <a href="{{ url('/dashboard') }}" wire:navigate class="text-white">Homepage</a>
+            <a href="{{ url('/my-orders') }}" wire:navigate class="text-white">My Orders</a>
+            @endauth
         </div>
+        
+        @if (Route::has('login'))
+            <div class="flex items-center space-x-4 text-white">
+                @auth
+                    <h1>Welcome Macky!</h1>
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="text-white;">Log in</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="text-white;">Register</a>
+                    @endif
+                @endauth
+            </div>
+        @endif
+        </header>
+
+        @yield('content')
 
         @stack('modals')
 
-        @livewireScripts
-    </body>
+@livewireScripts
+</body>
 </html>

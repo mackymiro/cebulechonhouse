@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\MenuController;
 use App\Livewire\AdminController;
+use App\Livewire\OrderNow;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,8 @@ Route::get('/admin/customers', function(){
 Route::get('/order-now/lechon-house', function () {
     return view('order-now');
 });
+
+//Route::get('/order-now/lechon-house', OrderNow::class);
 
 Route::get('order-now/lechon-house/ala-carte', function () {
     return view('order-now-lechon-house-ala-carte');

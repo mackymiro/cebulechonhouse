@@ -20,10 +20,8 @@ class AdminMenuDessert extends Component
     public $updateId;
     public $deleteId;
 
-    public function confirmDeleteMeals($id){
-        $itemMeals = Item::find($id);
-        $itemMeals->delete();
- 
+    public function confirmDeleteMeals(Item $item){
+        $item->delete();
         session()->flash('message', 'Desserts deleted successfully!');
          
         return $this->redirect('/admin/menu/desserts', navigate: true);

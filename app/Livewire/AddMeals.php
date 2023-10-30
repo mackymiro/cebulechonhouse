@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Item;
+use Livewire\Attributes\Rule;
 
 use Livewire\WithFileUploads;
 
@@ -13,25 +14,22 @@ class AddMeals extends Component
     use WithFileUploads;
 
     public $categories;
+
+    #[Rule('required')]
     public $nameOfFood;
-    public $foodDescription;
+
+    #[Rule('required')]
     public $price;
   
-    #[Rule('image|max:1024|jpg')] // 1MB Max
+    #[Rule('required')]
     public $uploadPhoto;
 
-    protected $rules = [
-        'nameOfFood'=>'required',
-        'price'=>'required|numeric|min:0',
-        'uploadPhoto'=>'required',
-    ];
 
     public function addMeals(){
        $this->validate();
        $uploadedPhoto = $this->uploadPhoto;
        $fileName = $uploadedPhoto->getClientOriginalName();
        $uploadedPhoto->storeAs('public/images', $fileName); 
-
 
         Item::create([
             'category_id' => $this->categories,

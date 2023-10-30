@@ -20,12 +20,9 @@ class AdminMenuAlaCarte extends Component
     public $updateId;
     public $deleteId;
 
-    public function confirmDeleteMeals($id){
-        $itemMeals = Item::find($id);
-        $itemMeals->delete();
- 
+    public function confirmDeleteMeals(Item $item){
+        $item->delete();
         session()->flash('message', 'Ala Carte deleted successfully!');
-         
         return $this->redirect('/admin/menu/ala-carte', navigate: true);
     }
 

@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+
+class Item extends Model    
 {
     use HasFactory;
     protected $fillable = [
@@ -14,4 +15,8 @@ class Item extends Model
         'image',
         'category_id',
     ];
+
+    public function orderDetail(){
+        return $this->hasOne(OrderDetail::class, 'item_id');
+    }
 }
