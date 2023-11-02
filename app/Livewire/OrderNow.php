@@ -9,29 +9,85 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\TotalOrder;
 use Auth;
+use Livewire\Attributes\Rule;
+use App\Models\User;
 
 class OrderNow extends Component
 {
     public $isOpen = 0;
+    public $isOpenPlaceOrder = 0;
     public $foodId;
     public $foodName;
     public $foodPrice;
     public $foodImage;
     public $number = 1;
-    public $numberSelect = 1;
     public $orders =[];
     public $orderFoodName;
     public $qty;
-    public $number1;
     public $totalAmount;
+    public $editCard;
+
+    #[Rule('required')]
+    public $address;
+
+    public function submitOrder(){
+       $this->validate();
+
+       User::updateOrCreate(['id'=>Auth::id()], [
+            'address'=>$this->address,
+            'place_order'=>1
+       ]);
+
+       return $this->redirect('/my-orders', navigate: true);
+    }
    
+    public function closeModalPlaceOrder(){
+        $this->isOpenPlaceOrder = false;
+    }
+
+    public function placeOrder(){
+       
+        $this->openModalPlaceOrder();
+    }
+
+    public function updateOrder($id){
+        $getOrderDetail = OrderDetail::find($id);
+
+        //get the item table
+        $getItem = Item::find($getOrderDetail->item_id);
+        //dd($getItem->price, $this->number);
+        $getPrice = $getItem->price * $this->number;
+        //dd($getPrice);
+
+        OrderDetail::updateOrCreate(['id'=>$id],[
+            'quantity'=>$this->number,
+        ]);
+
+        TotalOrder::updateOrCreate(['order_details_id'=>$id],[
+           'total_amount'=>$getPrice,
+        ]);
+
+        return $this->redirect('/order-now/lechon-house', navigate: true);
+
+    }       
 
     public function plsLogin(){
         return $this->redirect('/register', navigate: true);
     }
 
     public function editCart($id){
-        
+        $this->editCard = 'edit';
+    
+        $editCartOrderDetail = OrderDetail::find($id);
+      
+        $editItem = Item::find($editCartOrderDetail->item_id);
+      
+        $this->foodName = $editItem->name;
+        $this->foodPrice = $editItem->price;
+        $this->foodImage = $editItem->image;
+        $this->foodId = $editCartOrderDetail->id;
+        $this->number = $editCartOrderDetail->quantity;
+
         $this->openModal();
     }
 
@@ -55,6 +111,7 @@ class OrderNow extends Component
     }
 
     public function addOrder($id){
+        $this->editCard = false;
         $foodItems = Item::find($id);
         $this->orderFoodName = $foodItems->name;
         //dd($foodItems->price, $this->number++);
@@ -111,6 +168,10 @@ class OrderNow extends Component
         $this->isOpen = true;
     }
 
+    public function openModalPlaceOrder(){
+        $this->isOpenPlaceOrder = true;
+    }
+
     public function addToCart($id){
         $foodItems = Item::find($id);
         $this->foodId = $foodItems->id;
@@ -121,7 +182,6 @@ class OrderNow extends Component
         $this->openModal();
     }
 
-   
 
     public function render(){
         $items = Item::orderBy('id', 'desc')
@@ -130,10 +190,23 @@ class OrderNow extends Component
 
         $allOrders = OrderDetail::all();
 
+        $auth = Auth::id();
+        
+        foreach($allOrders as $orders){
+            $authId = $orders->order->user_id;
+            $placeOrder = $orders->order->user->place_order;
+        }
+
+
         $this->totalAmount = $allOrders->sum(function($order) {
             return $order->quantity * $order->orderItems->price;
         });
 
-        return view('livewire.order-now', ['items'=>$items, 'allOrders'=>$allOrders]);
+        return view('livewire.order-now', [
+                'items'=>$items, 
+                'allOrders'=>$allOrders, 
+                'auth'=>$auth, 
+                'authId'=>$authId,
+                'placeOrder'=>$placeOrder]);
     }
 }

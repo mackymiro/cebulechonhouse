@@ -19,7 +19,8 @@
                         @include('livewire.add-to-cart', [
                                 'foodName'=>$foodName, 
                                 'foodPrice'=>$foodPrice,
-                                'foodImage'=>$foodImage
+                                'foodImage'=>$foodImage,
+                                'editCard'=>$editCard,
                         ])
                     @endif
                    
@@ -29,24 +30,8 @@
             </div>
         </div>
          <!-- Order Summary -->
-        <div class="w-1/4 bg-white p-6 rounded shadow">
-            <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
-
-            <!-- Example order items -->
-            <div class="mb-4">
-                <p>Item 1</p>
-                <p class="text-gray-700 text-sm">Quantity: 2</p>
-            </div>
-            <div class="mb-4">
-                <p>Item 2</p>
-                <p class="text-gray-700 text-sm">Quantity: 1</p>
-            </div>
-
-            <hr class="my-4">
-
-            <div class="font-bold text-xl">Total: $20.00</div>
-
-            <button class="bg-blue-500 text-white font-bold py-2 px-4 mt-4 rounded">Place Order</button>
+         <div class="w-1/4 bg-white p-6 rounded shadow">
+           @include('livewire.order-summary', ['orderFoodName'=>$orderFoodName, 'qty'=>$qty])
         </div>
     </div>
 </div>

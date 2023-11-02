@@ -19,5 +19,9 @@ class Order extends Model
     public function totalOrder(){
         return $this->hasOne(TotalOrder::class, 'order_id');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     
 }

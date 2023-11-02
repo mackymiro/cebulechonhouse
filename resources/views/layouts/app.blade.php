@@ -19,7 +19,7 @@
         <style>
         .menu-links {
             display: flex;
-            margin-left:-800px;
+            margin-left:-700px;
             align-items: left;
         }
 
@@ -47,7 +47,7 @@
         @if (Route::has('login'))
             <div class="flex items-center space-x-4 text-white">
                 @auth
-                    <h1>Welcome Macky!</h1>
+                    <h1 style="font-weight:bold; ">Welcome {{ auth()->user()->name; }}!</h1>
                     <form method="POST" action="{{ route('logout') }}" x-data>
                         @csrf
                         <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">

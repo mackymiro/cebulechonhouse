@@ -21,7 +21,8 @@
                                 'foodId'=>$foodId,
                                 'foodName'=>$foodName, 
                                 'foodPrice'=>$foodPrice,
-                                'foodImage'=>$foodImage
+                                'foodImage'=>$foodImage,
+                                'editCard'=>$editCard,
                         ])
                     @endif
                    
