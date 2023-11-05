@@ -21,11 +21,13 @@
                                 </thead>
                                 <tbody>
                                      @foreach($allOrders as $allOrder)
-                                    <tr>
-                                        <td>{{ $allOrder->orderItems->name }}</td>
-                                        <td>x{{ $allOrder->quantity}}</td>
-                                        <td><i class="fa fa-dollar"></i> {{ $allOrder->quantity * $allOrder->orderItems->price}}</td>
-                                    </tr>
+                                       @if($auth == $allOrder->order->user_id)
+                                        <tr>
+                                            <td>{{ $allOrder->orderItems->name }}</td>
+                                            <td>x{{ $allOrder->quantity}}</td>
+                                            <td><i class="fa fa-dollar"></i> {{ $allOrder->quantity * $allOrder->orderItems->price}}</td>
+                                        </tr>
+                                        @endif
                                     @endforeach
                                     <tr>
                                         <td></td>

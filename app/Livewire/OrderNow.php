@@ -33,11 +33,19 @@ class OrderNow extends Component
     public function submitOrder(){
        $this->validate();
 
-       User::updateOrCreate(['id'=>Auth::id()], [
-            'address'=>$this->address,
-            'place_order'=>1
-       ]);
+       $authId = Auth::id();
 
+       $allOrders = OrderDetail::all();
+       foreach($allOrders as $allOrder){
+          if($authId == $allOrder->order->user_id){
+                $allOrder->update(['current_timestamps'=>time()]);
+          }
+       }
+
+      User::updateOrCreate(['id'=>Auth::id()], [
+           'address'=>$this->address,
+       ]);
+       
        return $this->redirect('/my-orders', navigate: true);
     }
    
@@ -194,19 +202,28 @@ class OrderNow extends Component
         
         foreach($allOrders as $orders){
             $authId = $orders->order->user_id;
-            $placeOrder = $orders->order->user->place_order;
+            $currentTimestamps = $orders->current_timestamps;
         }
-
-
-        $this->totalAmount = $allOrders->sum(function($order) {
-            return $order->quantity * $order->orderItems->price;
-        });
+       
+        
+        if(count($allOrders) == 0){
+            $authId = Auth::id();
+        }
+      
+        if(count($allOrders) != 0){
+            if(Auth::id()){
+                $this->totalAmount = $allOrders->where('current_timestamps', NULL)->sum(function($order) {
+                    return $order->quantity * $order->orderItems->price;
+                });
+            } 
+        }
+      
 
         return view('livewire.order-now', [
-                'items'=>$items, 
-                'allOrders'=>$allOrders, 
-                'auth'=>$auth, 
-                'authId'=>$authId,
-                'placeOrder'=>$placeOrder]);
+            'items'=>$items, 
+            'allOrders'=>$allOrders, 
+            'auth'=>$auth, 
+            'authId'=>$authId,
+            'currentTimestamps'=>$currentTimestamps]);
     }
 }

@@ -11,7 +11,8 @@ class OrderDetail extends Model
     protected $fillable = [
         'item_id',
         'order_id',
-        'quantity'
+        'quantity',
+        'current_timestamps',
     ];
 
     public function order(){

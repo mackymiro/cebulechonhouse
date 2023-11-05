@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\TotalOrder;
 use Auth;
+use Livewire\Attributes\Rule;
+use App\Models\User;
 
 class OrderNowLechonHouseBeverages extends Component
 {
@@ -24,6 +26,29 @@ class OrderNowLechonHouseBeverages extends Component
     public $qty;
     public $totalAmount;
     public $editCard;
+
+    #[Rule('required')]
+    public $address;
+
+    public function submitOrder(){
+        $this->validate();
+ 
+        $authId = Auth::id();
+ 
+        $allOrders = OrderDetail::all();
+        foreach($allOrders as $allOrder){
+           if($authId == $allOrder->order->user_id){
+                 $allOrder->update(['current_timestamps'=>time()]);
+           }
+        }
+ 
+       User::updateOrCreate(['id'=>Auth::id()], [
+            'address'=>$this->address,
+        ]);
+ 
+ 
+        return $this->redirect('/my-orders', navigate: true);
+    }
 
     public function closeModalPlaceOrder(){
         $this->isOpenPlaceOrder = false;
@@ -180,13 +205,27 @@ class OrderNowLechonHouseBeverages extends Component
         
         foreach($allOrders as $orders){
             $authId = $orders->order->user_id;
+            $currentTimestamps = $orders->current_timestamps;
         }
 
-        $this->totalAmount = $allOrders->sum(function($order) {
-            return $order->quantity * $order->orderItems->price;
-        });
+        if(count($allOrders) == 0){
+            $authId = Auth::id();
+        }
+      
+        if(count($allOrders) != 0){
+            if(Auth::id()){
+                $this->totalAmount = $allOrders->where('current_timestamps', NULL)->sum(function($order) {
+                    return $order->quantity * $order->orderItems->price;
+                });
+            } 
+        }
 
         
-        return view('livewire.order-now-lechon-house-beverages', ['items'=>$items, 'allOrders'=>$allOrders, 'auth'=>$auth, 'authId'=>$authId]);
+        return view('livewire.order-now-lechon-house-beverages', [
+            'items'=>$items, 
+            'allOrders'=>$allOrders, 
+            'auth'=>$auth, 
+            'authId'=>$authId,
+            'currentTimestamps'=>$currentTimestamps]);
     }
 }
