@@ -45,7 +45,7 @@ class OrderNow extends Component
       User::updateOrCreate(['id'=>Auth::id()], [
            'address'=>$this->address,
        ]);
-       
+
        return $this->redirect('/my-orders', navigate: true);
     }
    
@@ -153,9 +153,6 @@ class OrderNow extends Component
             'total_amount' =>$totalAmount,
         ]);
        
-
-
-       
         $this->closeModal();        
     }
 
@@ -194,6 +191,7 @@ class OrderNow extends Component
     public function render(){
         $items = Item::orderBy('id', 'desc')
                 ->where('category_id', 1)
+                ->where('restaurant', 1)
                 ->get();
 
         $allOrders = OrderDetail::all();

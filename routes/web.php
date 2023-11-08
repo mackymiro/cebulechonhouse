@@ -107,9 +107,24 @@ Route::get('my-orders', function () {
 });
 
 
-
 Route::get('/order-now/chinese-kitchen', function () {
     return view('order-now-chinese-kitchen');
 });
 
+Route::get('/order-now/chinese-kitchen/ala-carte', function () {
+    return view('order-now-chinese-kitchen-ala-carte');
+});
+
+
+Route::get('/order-now/chinese-kitchen/group-meals', function () {
+    return view('order-now-chinese-kitchen-group-meals');
+});
+
+Route::get('order-now/chinese-kitchen/desserts', function () {
+    return view('order-now-chinese-kitchen-dessert');
+});
+
+Route::get('order-now/chinese-kitchen/beverages', function () {
+    return view('order-now-chinese-kitchen-beverages');
+});
 

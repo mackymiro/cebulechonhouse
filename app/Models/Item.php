@@ -14,6 +14,7 @@ class Item extends Model
         'price',
         'image',
         'category_id',
+        'restaurant',
     ];
 
     public function orderDetail(){

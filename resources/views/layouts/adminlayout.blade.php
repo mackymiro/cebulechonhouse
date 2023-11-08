@@ -27,7 +27,7 @@
                 </li>
                 <li class="mb-4">
                     <a href="{{ url('admin/menu') }}" wire:navigate class="flex items-center py-2 px-4">
-                        <span class="mr-2"><i class="fas fa-menu"></i></span> Menu
+                        <span class="mr-2"><i class="fas fa-menu"></i></span>Menu
                     </a>
                     <!-- Submenu -->
                     <ul class="pl-4">
@@ -59,6 +59,7 @@
                         </li>
                     </ul>
                 </li>
+                
                 <li class="mb-4">
                     <a href="{{ url('admin/user-settings') }}" wire:navigate class="flex items-center py-2 px-4">
                         <span class="mr-2"><i class="fas fa-cogs"></i></span> User Settings

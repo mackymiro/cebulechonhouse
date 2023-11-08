@@ -24,6 +24,12 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-4">
+                <select wire:model="restaurantName" class="w-full px-3 py-2 border rounded">
+                    <option value="1">Cebu Lechon House</option>
+                    <option value="2">New Chinese Kitchen</option>
+                </select>
+            </div>
             @error('nameOfFood')
                 <p class="text-red-500 text-lg mt-2">{{ $message }}</p>
             @enderror

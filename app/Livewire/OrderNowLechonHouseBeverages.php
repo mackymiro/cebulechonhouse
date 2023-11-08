@@ -76,7 +76,7 @@ class OrderNowLechonHouseBeverages extends Component
            'total_amount'=>$getPrice,
         ]);
 
-        return $this->redirect('/order-now/lechon-house', navigate: true);
+        return $this->redirect('/order-now/lechon-house/beverages', navigate: true);
 
     }      
 
@@ -197,6 +197,7 @@ class OrderNowLechonHouseBeverages extends Component
     public function render(){
         $items = Item::orderBy('id', 'desc')
                 ->where('category_id', 5)
+                ->where('restaurant', 1)
                 ->get();
 
         $allOrders = OrderDetail::all();

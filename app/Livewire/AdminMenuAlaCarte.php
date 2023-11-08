@@ -92,7 +92,14 @@ class AdminMenuAlaCarte extends Component
     public function render(){
         $items = Item::orderBy('id', 'desc')
                 ->where('category_id', 2)
+                ->where('restaurant', 1)
                 ->get();
-        return view('livewire.admin-menu-ala-carte', ['items'=>$items]);
+
+        $itemsChineses = Item::orderBy('id', 'desc')
+                ->where('category_id', 2)
+                ->where('restaurant', 2)
+                ->get();
+
+        return view('livewire.admin-menu-ala-carte', ['items'=>$items, 'itemsChineses'=>$itemsChineses]);
     }
 }

@@ -11,7 +11,8 @@ use Auth;
 use Livewire\Attributes\Rule;
 use App\Models\User;
 
-class OrderNowLechonHouseAlaCarte extends Component
+
+class OrderNowChineseKitchenBeverages extends Component
 {
     public $isOpen = 0;
     public $isOpenPlaceOrder = 0;
@@ -30,25 +31,24 @@ class OrderNowLechonHouseAlaCarte extends Component
     public $address;
 
     public function submitOrder(){
-        $this->validate();
- 
-        $authId = Auth::id();
- 
-        $allOrders = OrderDetail::all();
-        foreach($allOrders as $allOrder){
-           if($authId == $allOrder->order->user_id){
-                 $allOrder->update(['current_timestamps'=>time()]);
-           }
-        }
- 
-       User::updateOrCreate(['id'=>Auth::id()], [
-            'address'=>$this->address,
-        ]);
- 
- 
-        return $this->redirect('/my-orders', navigate: true);
-    }
+       $this->validate();
 
+       $authId = Auth::id();
+
+       $allOrders = OrderDetail::all();
+       foreach($allOrders as $allOrder){
+          if($authId == $allOrder->order->user_id){
+                $allOrder->update(['current_timestamps'=>time()]);
+          }
+       }
+
+      User::updateOrCreate(['id'=>Auth::id()], [
+           'address'=>$this->address,
+       ]);
+
+       return $this->redirect('/my-orders', navigate: true);
+    }
+   
     public function closeModalPlaceOrder(){
         $this->isOpenPlaceOrder = false;
     }
@@ -75,14 +75,13 @@ class OrderNowLechonHouseAlaCarte extends Component
            'total_amount'=>$getPrice,
         ]);
 
-        return $this->redirect('/order-now/lechon-house/ala-carte', navigate: true);
+        return $this->redirect('/order-now/chinese-kitchen/beverages', navigate: true);
 
-    }      
+    }   
 
     public function plsLogin(){
         return $this->redirect('/register', navigate: true);
     }
-
 
     public function editCart($id){
         $this->editCard = 'edit';
@@ -109,11 +108,11 @@ class OrderNowLechonHouseAlaCarte extends Component
         $deleteTotalOrder->delete();
         
          // Step 2: Find and delete OrderDetail record
-        $deleteOrders = OrderDetail::where('order_id', $deleteOrderDetail->id);
-        $deleteOrders->delete();
+        $deleteOrderDetail = OrderDetail::where('order_id', $deleteOrderDetail->id);
+        $deleteOrderDetail->delete();
 
          // Step 3: Find and delete Order records
-        $deleteOrder = Order::where('id', $deleteOrderDetail->order_id);
+        $deleteOrder = Order::where('user_id', Auth::id());
         $deleteOrder->delete();
 
         unset($this->orders[$index]);
@@ -155,12 +154,9 @@ class OrderNowLechonHouseAlaCarte extends Component
             'total_amount' =>$totalAmount,
         ]);
        
-
-
-       
         $this->closeModal();        
     }
-    
+
     public function decrement(){
         $this->number--;
     }
@@ -194,24 +190,23 @@ class OrderNowLechonHouseAlaCarte extends Component
 
     public function render(){
         $items = Item::orderBy('id', 'desc')
-                    ->where('category_id', 2)
-                    ->where('restaurant', 1)
-                    ->get();
+                        ->where('category_id', 5)
+                        ->where('restaurant', 2)
+                        ->get();
 
         $allOrders = OrderDetail::all();
-
         $auth = Auth::id();
-        
+
         foreach($allOrders as $orders){
             $authId = $orders->order->user_id;
             $currentTimestamps = $orders->current_timestamps;
         }
 
-        
+
         if(count($allOrders) == 0){
-            $authId = Auth::id();
+        $authId = Auth::id();
         }
-      
+
         if(count($allOrders) != 0){
             if(Auth::id()){
                 $this->totalAmount = $allOrders->where('current_timestamps', NULL)->sum(function($order) {
@@ -220,7 +215,7 @@ class OrderNowLechonHouseAlaCarte extends Component
             } 
         }
 
-        return view('livewire.order-now-lechon-house-ala-carte', [
+        return view('livewire.order-now-chinese-kitchen-beverages', [
             'items'=>$items, 
             'allOrders'=>$allOrders, 
             'auth'=>$auth, 

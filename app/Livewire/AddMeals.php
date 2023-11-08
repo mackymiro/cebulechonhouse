@@ -24,6 +24,8 @@ class AddMeals extends Component
     #[Rule('required')]
     public $uploadPhoto;
 
+    public $restaurantName;
+
 
     public function addMeals(){
        $this->validate();
@@ -36,6 +38,7 @@ class AddMeals extends Component
             'name'=>$this->nameOfFood,
             'price'=>$this->price,
             'image'=>$fileName,
+            'restaurant'=>$this->restaurantName,
         ]);      
 
         $this->categories = '';

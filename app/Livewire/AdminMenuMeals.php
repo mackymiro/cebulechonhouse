@@ -98,8 +98,15 @@ class AdminMenuMeals extends Component
     public function render(){
         $items = Item::orderBy('id', 'desc')
                 ->where('category_id', 1)
+                ->where('restaurant', 1)
                 ->get();
 
-        return view('livewire.admin-menu-meals', ['items'=>$items]);
+        $itemsChineses = Item::orderBy('id', 'desc')
+                    ->where('category_id', 1)
+                    ->where('restaurant', 2)
+                    ->get();
+
+
+        return view('livewire.admin-menu-meals', ['items'=>$items, 'itemsChineses'=>$itemsChineses]);
     }
 }
