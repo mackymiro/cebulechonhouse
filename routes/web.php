@@ -43,6 +43,10 @@ Route::get('/admin/dashboard', function(){
     return view('admin-dashboard');
 });
 
+Route::get('/admin/logout', function(){
+    return view('admin');
+});
+
 Route::get('/admin/add-categories', function(){
     return view('add-categories');
 });
