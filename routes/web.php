@@ -29,6 +29,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('my-orders', function () {
+        return view('my-orders');
+    });
 });
 
 Route::get('/admin', function () {
@@ -102,9 +106,6 @@ Route::get('order-now/lechon-house/beverages', function () {
     return view('order-now-lechon-house-beverages');
 });
 
-Route::get('my-orders', function () {
-    return view('my-orders');
-});
 
 
 Route::get('/order-now/chinese-kitchen', function () {
